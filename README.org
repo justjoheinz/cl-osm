@@ -1,0 +1,16 @@
+#+title: Readme
+
+* cl-osm
+
+A library to access [[https://wiki.openstreetmap.org/wiki/API_v0.6][OpenStreetMap]].
+
+** Installation
+
+The easiest way is to install the library via qlot. Simply add
+qlot add justjoheinz/cl-osm to your qlot file.
+
+Eventually the library will be available via ultralisp.
+
+** Usage
+
+TBD

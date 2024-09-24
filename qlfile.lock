@@ -1,0 +1,12 @@
+("quicklisp" .
+ (:class qlot/source/dist:source-dist
+  :initargs (:distribution "https://beta.quicklisp.org/dist/quicklisp.txt" :%version :latest)
+  :version "2023-10-21"))
+("ultralisp" .
+ (:class qlot/source/dist:source-dist
+  :initargs (:distribution "https://dist.ultralisp.org/" :%version :latest)
+  :version "20240924210500"))
+("ciao" .
+ (:class qlot/source/github:source-github
+  :initargs (:repos "kjinho/ciao" :ref nil :branch nil :tag nil)
+  :version "github-80f14ac66e047bf0c5f521de2eb87abd3ed2a740"))
