@@ -132,10 +132,14 @@
                                                :token-url "https://www.openstreetmap.org/oauth2/token"))
 
 ;; assign the value of oauth2/request-auth-code/browser to *oauth-obj*
-(defun get-auth-code ()
+(defun get-auth-code (scopes)
+  "Open the default browser to obatin the OAuth2 token.
+
+Requires environment variables OSM_OAUTH_CLIENT_ID and OSM_OAUTH_SECRET to be set.
+The scopes argument is a list of strings as per the OpenStreetMap API documentation."
   (setf *oauth-obj*
         (ciao:oauth2/request-auth-code/browser
          *osm-auth-server*
          (make-instance 'ciao:oauth2-client :secret *osm-oauth-secret*
                                             :id     *osm-oauth-client-id*)
-         :scopes '("read_prefs"))))
+         :scopes scopes)))

@@ -20,7 +20,7 @@ Eventually the library will be available via ultralisp.
 ;; query for a node
 (osm:node 1)
 ;; get oauth token
-(osm:get-auth-code)
+(osm:get-auth-code '("read_prefs"))
 ;; check permissions
 (osm:permissions)
 #+end_src
