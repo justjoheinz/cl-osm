@@ -122,6 +122,13 @@
 (defun relations (ids)
   (osm/get (format nil "/relations?relations=~{~A~^,~}" ids)))
 
+;; Changesets: GET /api/0.6/changeset/#id
+
+(defun changeset (id &key (include-discussion nil))
+  (if include-discussion
+      (osm/get (format nil "/changeset/~A?include_discussion=true" id))
+      (osm/get (format nil "/changeset/~A" id))))
+
 ;; create a parameter *oauth-ojb* and assign the return value
 (defparameter *oauth-obj* nil)
 (defparameter *osm-oauth-client-id* (uiop:getenv "OSM_OAUTH_CLIENT_ID"))

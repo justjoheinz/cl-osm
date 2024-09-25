@@ -28,4 +28,5 @@
    #:relations
    #:api-permissions
    #:permissions
-   #:get-auth-code))
+   #:get-auth-code
+   #:changeset))
