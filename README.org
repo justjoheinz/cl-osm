@@ -13,4 +13,17 @@ Eventually the library will be available via ultralisp.
 
 ** Usage
 
-TBD
+#+begin_src lisp
+;; installed via qlot for example
+;; qlot add justjoheinz/cl-osm
+(ql:quickload :cl-osm)
+;; query for a node
+(osm:node 1)
+;; get oauth token
+(osm:get-auth-code)
+;; check permissions
+(osm:permissions)
+#+end_src
+
+#+RESULTS:
+: ((:VERSION . 0.6) (:GENERATOR . OpenStreetMap server) (:COPYRIGHT . OpenStreetMap and contributors) (:ATTRIBUTION . http://www.openstreetmap.org/copyright) (:LICENSE . http://opendatacommons.org/licenses/odbl/1-0/) (:PERMISSIONS allow_read_prefs))

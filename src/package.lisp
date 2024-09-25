@@ -27,4 +27,5 @@
    #:ways
    #:relations
    #:api-permissions
-   #:permissions))
+   #:permissions
+   #:get-auth-code))
