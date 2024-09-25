@@ -6,24 +6,43 @@ A library to access [[https://wiki.openstreetmap.org/wiki/API_v0.6][OpenStreetMa
 
 ** Installation
 
-The easiest way is to install the library via qlot. Simply add
-qlot add justjoheinz/cl-osm to your qlot file.
+The easiest way is to install the library via ~qlot~. Simply type
+~qlot add justjoheinz/cl-osm~ or add the line ~github justjoheinz/cl-osm~ to your qlot file.
 
 Eventually the library will be available via ultralisp.
 
 ** Usage
 
-#+begin_src lisp :exports both
-;; installed via qlot for example
-;; qlot add justjoheinz/cl-osm
+Load the system via quicklisp.
+
+#+begin_src lisp
 (ql:quickload :cl-osm)
-;; query for a node
+#+end_src
+
+#+RESULTS:
+| :CL-OSM |
+
+Use the api to query elements.
+Each response comes as a hash table.
+
+#+begin_src lisp :exports both
 (osm:node 1)
-;; get oauth token
+#+end_src
+
+#+RESULTS:
+: ((:VERSION . 0.6) (:GENERATOR . openstreetmap-cgimap 2.0.1 (1991 spike-08.openstreetmap.org)) (:COPYRIGHT . OpenStreetMap and contributors) (:ATTRIBUTION . http://www.openstreetmap.org/copyright) (:LICENSE . http://opendatacommons.org/licenses/odbl/1-0/) (:ELEMENTS ((:TYPE . node) (:ID . 1) (:LAT . 42.79572) (:LON . 13.569003) (:TIMESTAMP . 2024-09-13T11:52:01Z) (:VERSION . 39) (:CHANGESET . 156568263) (:USER . SomeoneElse_Revert) (:UID . 1778799) (:TAGS (:|COMMUNICATION:MICROWAVE| . yes) (:|COMMUNICATION:RADIO| . fm) (:DESCRIPTION . Radio Subasio) (:FREQUENCY . 105.5 MHz) (:MAN--MADE . mast) (:NAME . Monte Piselli - San Giacomo) (:NOTE . This is the very first node on OpenStreetMap.) (:|TOWER:CONSTRUCTION| . lattice) (:|TOWER:TYPE| . communication)))))
+
+If you require an oauth token, you can use ~(osm:get-auth-code scopes)~.However most API calls which require such a token, have not yet been implemented. The oauth library in use is [[https://github.com/kjinho/ciao][ciao]].
+
+#+begin_src lisp :exports both
 (osm:get-auth-code '("read_prefs"))
-;; check permissions
 (osm:permissions)
 #+end_src
 
 #+RESULTS:
 : ((:VERSION . 0.6) (:GENERATOR . OpenStreetMap server) (:COPYRIGHT . OpenStreetMap and contributors) (:ATTRIBUTION . http://www.openstreetmap.org/copyright) (:LICENSE . http://opendatacommons.org/licenses/odbl/1-0/) (:PERMISSIONS allow_read_prefs))
+
+
+** Caveats
+
+OSM utilizes an XML first API, and cl-osm uses json as the exchange format. Many endpoints of OSM have been transformed to accept or produce json, but it seems not all.
