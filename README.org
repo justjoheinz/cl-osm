@@ -13,7 +13,7 @@ Eventually the library will be available via ultralisp.
 
 ** Usage
 
-#+begin_src lisp
+#+begin_src lisp :exports both
 ;; installed via qlot for example
 ;; qlot add justjoheinz/cl-osm
 (ql:quickload :cl-osm)
