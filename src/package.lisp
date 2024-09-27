@@ -2,6 +2,8 @@
   (:documentation "A Common Lisp library for working with OpenStreetMap data.")
   (:use #:cl)
   (:nicknames #:osm)
+  (:import-from #:assoc-utils
+                #:aget)
   (:export
    #:*osm-api-version*
    #:*osm-api-base-url*
@@ -29,4 +31,6 @@
    #:api-permissions
    #:permissions
    #:get-auth-code
-   #:changeset))
+   #:changeset
+   #:with-element
+   #:alist-get))

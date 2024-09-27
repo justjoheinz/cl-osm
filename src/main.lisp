@@ -6,6 +6,15 @@
   "The base URL for the OpenStreetMap API")
 (defvar *osm-dev-base-url* "https://master.apis.dev.openstreetmap.org")
 
+
+(defun alist-get (alist &rest keys)
+  "Recursively find KEYs in ALIST."
+  (loop :for key :in keys
+        :do (if (typep key (and 'fixnum 'unsigned-byte))
+                (setq alist (nth key alist))
+                (setq alist (aget alist key))))
+  alist)
+
 (define-condition osm-error (error)
   ((status :initarg :status :reader osm-error-status)
    (message :initarg :message :reader osm-error-message)
@@ -191,3 +200,6 @@ The scopes argument is a list of strings as per the OpenStreetMap API documentat
          (make-instance 'ciao:oauth2-client :secret *osm-oauth-secret*
                                             :id     *osm-oauth-client-id*)
          :scopes scopes)))
+
+(defun with-element (osm-reply &rest args)
+  (apply #'alist-get osm-reply (append '(:elements 0) args)))

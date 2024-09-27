@@ -4,6 +4,7 @@
   :version "0.6.0"
   :depends-on (:dexador
                :ciao
+               :assoc-utils
                :cl-json)
   :serial t
   :components ((:module "src"
